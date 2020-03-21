@@ -1,8 +1,10 @@
+//Select DOM elements
 const praimeryCatImage = document.querySelector('#displayedCatImage');
 const displayedCatName = document.querySelector('#displayedCatName');
 const changeCatButton = document.querySelector('#changeCatButton');
 const clickedNum = document.querySelector('#clickedNum');
 
+//Array contains cats info
 let cats = [
     {
         id:0,
@@ -33,22 +35,29 @@ let cats = [
     }
 ]
 
+//Set default index of cats
 let currentCat = 0;
 
+//Update DOM elements
 function init(){
     praimeryCatImage.setAttribute('src',cats[currentCat].pictureSRC);
     displayedCatName.innerHTML = cats[currentCat].name;
     clickedNum.innerHTML = cats[currentCat].clickNumber;
 }
 
+//Set default cat when window loaded
 window.onload = init();
 
+//Count clickes and update cat object
 praimeryCatImage.addEventListener('click',() =>{
     parseInt(clickedNum.innerHTML,10);
     console.log(clickedNum.innerHTML++);
     clickedNum.textContent = clickedNum.innerHTML;
+    cats[currentCat].clickNumber = clickedNum.innerHTML;
+    console.log(cats[currentCat]);
 });
 
+//Change cats
 changeCatButton.addEventListener('click',() =>{
     if(currentCat < cats.length){
         currentCat += 1;
